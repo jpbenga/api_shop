@@ -2,30 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Products', {
+    await queryInterface.createTable('Product_Promotions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.TEXT
-      },
-      price: {
-        type: Sequelize.FLOAT
-      },
-      enable: {
-        type: Sequelize.BOOLEAN
-      },
-      user_id: {
+      product_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'products', // Remplacez par le nom réel de votre table "tags"
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      promotion_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'promotions', // Remplacez par le nom réel de votre table "products"
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -42,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Products');
+    await queryInterface.dropTable('Product_Promotions');
   }
 };
