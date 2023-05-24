@@ -20,9 +20,6 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Cart, {
         foreignKey: 'user_id'
       });
-      this.hasMany(models.Product, {
-        foreignKey: 'user_id'
-      });
     }
   }
   User.init({

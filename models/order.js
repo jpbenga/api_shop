@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     tva: DataTypes.FLOAT,
     quantity: DataTypes.INTEGER,
-    status: DataTypes.ENUM
+    status: DataTypes.ENUM('0', '1', '2')
   }, {
     sequelize,
     modelName: 'Order',
