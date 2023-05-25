@@ -1,27 +1,22 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Tag extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      this.belongsToMany(models.Product, {
-        through: 'tag_product',
-        foreignKey: 'tag_id'
-      });
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize('mysql::memory:');
+
+module.exports = (sequelize, Sequelize) => {
+
+  const Tag = sequelize.define('Tag', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
-  }
-  Tag.init({
-    name: DataTypes.STRING
   }, {
-    sequelize,
-    modelName: 'Tag',
+    freezeTableName: true,
+    tableName: 'Tags',
+
   });
   return Tag;
 };
+
+
+
+
+
