@@ -1,14 +1,9 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Promotion extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
       this.belongsToMany(models.Product, {
@@ -17,13 +12,28 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Promotion.init({
-    rate: DataTypes.FLOAT,
-    title: DataTypes.STRING,
-    enable: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Promotion',
-  });
+
+  Promotion.init(
+    {
+      rate: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      enable: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      }
+    },
+    {
+      sequelize,
+      freezeTableName: true,
+      tableName: 'promotions'
+    }
+  );
+
   return Promotion;
 };

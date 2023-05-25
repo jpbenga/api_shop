@@ -15,10 +15,12 @@ sequelize
         // Importer les routes
         const userRoutes = require('./routes/userRoutes');
         const tagRoutes = require('./routes/tagRoutes');
+        const promotionRoutes = require('./routes/promotionRoutes');
 
         // Utiliser les routes
         app.use('/users', userRoutes);
         app.use('/tags', tagRoutes);
+        app.use('/promotions', promotionRoutes);
 
         // Route principale
         app.get('/', (req, res) => {
