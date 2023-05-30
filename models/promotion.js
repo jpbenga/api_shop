@@ -1,39 +1,30 @@
 'use strict';
 
-const { Model } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class Promotion extends Model {
-    static associate(models) {
-      // define association here
-      this.belongsToMany(models.Product, {
-        through: 'product_promotion',
-        foreignKey: 'promotion_id'
-      });
-    }
-  }
-
-  Promotion.init(
-    {
-      rate: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      enable: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-      }
+  const Promotion = sequelize.define('Promotion', {
+    rate: {
+      type: DataTypes.FLOAT,
+      allowNull: false
     },
-    {
-      sequelize,
-      freezeTableName: true,
-      tableName: 'promotions'
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    enable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
-  );
+  }, {
+    freezeTableName: true,
+    tableName: 'promotions'
+  });
+
+  Promotion.associate = models => {
+    Promotion.belongsToMany(models.Product, {
+      through: 'product_promotion',
+      foreignKey: 'promotion_id'
+    });
+  };
 
   return Promotion;
 };
