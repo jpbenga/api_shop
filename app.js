@@ -17,13 +17,14 @@ sequelize
         const tagRoutes = require('./routes/tagRoutes');
         const promotionRoutes = require('./routes/promotionRoutes');
         const productRoutes = require('./routes/productRoutes');
+        const orderRoutes = require('./routes/orderRoutes');
 
         // Utiliser les routes
         app.use('/users', userRoutes);
         app.use('/tags', tagRoutes);
         app.use('/promotions', promotionRoutes);
         app.use('/products', productRoutes);
-
+        app.use('/orders', orderRoutes);
         // Route principale
         app.get('/', (req, res) => {
             res.send('Bienvenue sur votre serveur !');
