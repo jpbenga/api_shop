@@ -18,6 +18,8 @@ sequelize
         const promotionRoutes = require('./routes/promotionRoutes');
         const productRoutes = require('./routes/productRoutes');
         const orderRoutes = require('./routes/orderRoutes');
+        const cartRoutes = require('./routes/cartRoutes');
+        const commentRoutes = require('./routes/commentRoutes');
 
         // Utiliser les routes
         app.use('/users', userRoutes);
@@ -25,6 +27,8 @@ sequelize
         app.use('/promotions', promotionRoutes);
         app.use('/products', productRoutes);
         app.use('/orders', orderRoutes);
+        app.use('/carts', cartRoutes);
+        app.use('/comments', commentRoutes);
         // Route principale
         app.get('/', (req, res) => {
             res.send('Bienvenue sur votre serveur !');
