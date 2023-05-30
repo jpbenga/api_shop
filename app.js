@@ -20,6 +20,9 @@ sequelize
         const orderRoutes = require('./routes/orderRoutes');
         const cartRoutes = require('./routes/cartRoutes');
         const commentRoutes = require('./routes/commentRoutes');
+        const cartProductRoutes = require('./routes/cartProductRoutes');
+        const productPromotionRoutes = require('./routes/productPromotionRoutes');
+        const tagProductRoutes = require('./routes/tagProductRoutes');
 
         // Utiliser les routes
         app.use('/users', userRoutes);
@@ -29,6 +32,9 @@ sequelize
         app.use('/orders', orderRoutes);
         app.use('/carts', cartRoutes);
         app.use('/comments', commentRoutes);
+        app.use('/cart_products', cartProductRoutes);
+        app.use('/product_promotions', productPromotionRoutes);
+        app.use('/tag_products', tagProductRoutes);
         // Route principale
         app.get('/', (req, res) => {
             res.send('Bienvenue sur votre serveur !');
